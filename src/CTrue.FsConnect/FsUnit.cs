@@ -300,6 +300,7 @@ namespace CTrue.FsConnect
 		RadianPerSecond,
 		Radians,
 		RadiansPerSecond,
+		RadiansPerSecondSquared,
 		Rankine,
 		Ratio,
 		RevolutionPerMinute,

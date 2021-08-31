@@ -304,6 +304,7 @@ namespace CTrue.FsConnect
 			"radian per second",
 			"radians",
 			"radians per second",
+			"radians per second squared",
 			"rankine",
 			"ratio",
 			"revolution per minute",
