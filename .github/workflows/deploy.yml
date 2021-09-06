@@ -32,4 +32,4 @@ jobs:
         run: nuget sources add -Name github -Source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -UserName ${{ github.repository_owner }} -Password ${{ secrets.GITHUB_TOKEN }} -StorePasswordInClearText
 
       - name: Publish to Github NuGet registry
-        run: nuget push FsConnect\src\CTrue.FsConnect\bin\Release\*.nupkg -src github -SkipDuplicate
+        run: nuget push src\CTrue.FsConnect\bin\Release\*.nupkg -src github -SkipDuplicate
