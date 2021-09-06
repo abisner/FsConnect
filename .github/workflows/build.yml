@@ -7,7 +7,7 @@ on:
       - master
 
 env:
-  SOLUTION_NAME: src\*FsConnect.sln
+  SOLUTION_NAME: src\CTrue.FsConnect.sln
 
 jobs:
   build:
