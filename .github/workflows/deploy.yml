@@ -1,0 +1,35 @@
+name: Build and Package
+
+on: workflow_dispatch
+
+env:
+  SOLUTION_NAME: src\*FsConnect.sln
+
+jobs:
+  build:
+    name: Build and deploy
+    runs-on: windows-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout repositories
+        uses: actions/checkout@v2
+
+      - name: Setup MSBuild path
+        uses: microsoft/setup-msbuild@v1.0.3
+      
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+      
+      - name: Restore NuGet packages
+        run: nuget restore ${{ env.SOLUTION_NAME }}
+
+      - name: Build and package
+        run: msbuild ${{ env.SOLUTION_NAME }} /p:Configuration=Release
+
+      - name: Authenticate to Github NuGet registry
+        run: nuget sources add -Name github -Source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json -UserName ${{ github.repository_owner }} -Password ${{ secrets.GITHUB_TOKEN }} -StorePasswordInClearText
+
+      - name: Publish to Github NuGet registry
+        run: nuget push src\CTrue.FsConnect\bin\Release\*.nupkg -src github -SkipDuplicate
