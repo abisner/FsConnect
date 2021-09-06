@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - '.github/**'
 
 env:
   SOLUTION_NAME: src\CTrue.FsConnect.sln
